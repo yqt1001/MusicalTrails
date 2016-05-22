@@ -1,0 +1,17 @@
+name: MusicalTrails
+main: mc.yqt.musicaltrails.MusicalTrails
+version: 1.0
+author: yqt1001
+depend: 
+commands:
+   trail:
+      description: Trail selection GUI
+      usage: /<command>
+      aliases: [trails]
+   stopplayers:
+      description: Stops all active song players
+      usage: /<command>
+      aliases: [stopall]
+   print:
+      description: Prints out the specified song
+      usage: /<command> song name
