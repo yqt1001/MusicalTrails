@@ -51,12 +51,6 @@ public class Trail extends SongPlayer {
 	}
 
 	private Location randomizeSlightly(Location l, Random r) {
-		// shallow clone
-		Location loc = new Location(l.getWorld(), l.getX(), l.getY(), l.getZ());
-		
-		loc.setX(loc.getX() + r.nextGaussian() / 3);
-		loc.setY(loc.getY() + r.nextGaussian() / 3);
-		loc.setZ(loc.getZ() + r.nextGaussian() / 3);
-		return loc;
+		return l.clone().add(r.nextGaussian() / 3d, r.nextGaussian() / 3d, r.nextGaussian() / 3d);
 	}
 }
