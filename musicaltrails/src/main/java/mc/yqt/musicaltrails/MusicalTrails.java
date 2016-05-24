@@ -150,8 +150,7 @@ public class MusicalTrails extends JavaPlugin implements Listener {
 	 * @return the song specified from the title.
 	 */
 	public Song songFromTitle(String s) {
-		s.replaceAll(" ", "");
-		return songs.stream().filter(song -> song.noWhiteSpaceTitle().equals(s)).findFirst().orElse(null);
+		return songs.stream().filter(song -> song.title().equals(s)).findFirst().orElse(null);
 	}
 	
 	/**
