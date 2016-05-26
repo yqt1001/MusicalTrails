@@ -32,7 +32,7 @@ public class SongPlayer {
 		main.add(this);
 		thread = new Thread(() -> {
 			while(true) {
-				synchronized(SongPlayer.this) {
+				synchronized(this) {
 					// stop thread if song is done playing
 					if(tick > song.length()) {
 						end();
@@ -45,8 +45,8 @@ public class SongPlayer {
 					
 					// wait for next tick
 					try {
-						SongPlayer.this.wait(delay);
-					} catch (InterruptedException e) {
+						this.wait(delay);
+					} catch(InterruptedException e) {
 						// if interrupted, stop the thread
 						break;
 					}
@@ -63,14 +63,16 @@ public class SongPlayer {
 	 * Stops the thread but does not remove the player from actively played.
 	 */
 	public void pause() {
-		thread.interrupt();
+		if(thread != null)
+			thread.interrupt();
 	}
 	
 	/**
 	 * Stops the thread and removes the player from the active list.
 	 */
 	public void stop() {
-		thread.interrupt();
+		if(thread != null)
+			thread.interrupt();
 		main.remove(this);
 	}
 	

@@ -34,7 +34,7 @@ public class Trail extends SongPlayer {
 				// play note at players location
 				player.getWorld().playSound(player.getLocation(), 
 						note.instrument(), 
-						note.volume() / 100.0f, 
+						note.volume() / 200.0f, // half volume
 						note.pitch());
 				
 				// display a music note particle 

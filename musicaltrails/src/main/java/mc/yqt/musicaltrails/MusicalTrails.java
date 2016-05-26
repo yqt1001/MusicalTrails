@@ -18,6 +18,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -173,6 +174,15 @@ public class MusicalTrails extends JavaPlugin implements Listener {
 			it.remove();
 		}
 		
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onQuit(PlayerQuitEvent e) {
+		// shut off any active trails associated with this player
+		for(SongPlayer active : activePlayers)
+			if(active instanceof Trail)
+				if(((Trail) active).player().equals(e.getPlayer()))
+					active.stop();
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
